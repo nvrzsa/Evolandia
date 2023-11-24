@@ -25,9 +25,9 @@ public class Area{
      * Display the area with a point represented as 'P' and empty spaces as 'X'.
      */
     public void displayArea(){
-        for (int collumn = 0; collumn < length; collumn++){
+        for (int cols = 0; cols < length; cols++){
             for (int rows = 0; rows < width; rows++){
-                if(collumn == position[1] && rows == position[0]){
+                if(cols == position[1] && rows == position[0]){
                     System.out.print(" P ");
                 }
                 else {
@@ -44,14 +44,14 @@ public class Area{
      * @param move The direction to move the point. Use "UP", "DOWN", "LEFT", or "RIGHT".
      */
     public void move(String move){
-        int collumn = position[1];
+        int cols = position[1];
         int row = position[0];
 
         if(move.equals("UP")){
-            collumn -= 1;
+            cols -= 1;
         }
         else if(move.equals("DOWN")){
-            collumn += 1;
+            cols += 1;
         }
         else if(move.equals("LEFT")){
             row -= 1;
@@ -60,8 +60,8 @@ public class Area{
             row += 1;
         }
 
-        if(row >= 0 && row < width && collumn >= 0 && collumn < length){
-            position[1] = collumn;
+        if(row >= 0 && row < width && cols >= 0 && cols < length){
+            position[1] = cols;
             position[0] = row;
         }
     }
