@@ -95,7 +95,25 @@ public class Driver {
                     }
                     break;
                 case 3:
-                    System.out.println("WIP Feature");
+                    System.out.println("Select two creatures from your inventory to evolve: ");
+                    inventory.showCreature();
+                    System.out.print("\nEnter the index of the first creature: ");
+                    int index1 = sc.nextInt();
+                    System.out.print("Enter the index of the second creature: ");
+                    int index2 = sc.nextInt();
+            
+                    Creatures selectedCreature1 = inventory.getCreature(index1);
+                    Creatures selectedCreature2 = inventory.getCreature(index2);
+            
+                    if (selectedCreature1 != null && selectedCreature2 != null) {
+                        Creatures evolvedCreature = Creatures.evolveCreatures(selectedCreature1, selectedCreature2);
+                        if (evolvedCreature != null) {
+                            System.out.println("Evolution successful! " + evolvedCreature.getName() + " has been created.");
+                            inventory.addCreature(evolvedCreature);
+                        }
+                    } else {
+                        System.out.println("Invalid creature indices.");
+                    }
                     break;
                 case 4:
                     System.out.println("Thank you for playing the game!");
@@ -105,7 +123,8 @@ public class Driver {
                     System.out.println("Invalid selection");
             }
         }
-        sc.close();
+        sc.close(); // Close the primary scanner
+        pause.close(); // Close the scanner used for clearing the console
     }
 }
 
