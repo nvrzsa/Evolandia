@@ -19,10 +19,13 @@ public class EvolandiaView {
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainframe.setPreferredSize(new Dimension(1000, 300));
 
-        startOfGame.setLayout(new GridLayout(11, 1, 10, 10));
+        // for start of game
+        startOfGame.setLayout(new GridLayout(10, 1, 10, 10));
 
         JLabel label = new JLabel("Welcome to Evolandia");
         JLabel label1 = new JLabel("Choose your starter:");
+        ImageIcon strawanderPNG = new ImageIcon("sprites\\Strawander.png");
+        JLabel strawanderLabel = new JLabel(strawanderPNG);
         JButton buttonA = new JButton(" Strawander ");
         JButton buttonB = new JButton(" Chocowool ");
         JButton buttonC = new JButton(" Parfwit ");
@@ -33,18 +36,23 @@ public class EvolandiaView {
         JButton buttonH =   new JButton(" Chocolite ");
         JButton buttonI =   new JButton(" Oshacone ");
 
+
+
         startOfGame.add(label);
         startOfGame.add(label1);
+        startOfGame.add(strawanderLabel);
         startOfGame.add(buttonA);
         startOfGame.add(buttonB);
         startOfGame.add(buttonC);
         startOfGame.add(buttonD);
         startOfGame.add(buttonE);
         startOfGame.add(buttonF);
-        startOfGame.add(buttonG);
-        startOfGame.add(buttonH);
-        startOfGame.add(buttonI);
+       startOfGame.add(buttonG);
+       startOfGame.add(buttonH);
+       startOfGame.add(buttonI);
 
+
+        // add frames to panel
         panelCont.setLayout(cl);
         panelCont.add(startOfGame, "1");
         cl.show(panelCont, "1");
