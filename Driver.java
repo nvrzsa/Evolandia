@@ -59,16 +59,18 @@ public class Driver {
 
             switch (choice){
                 case 1:
-                System.out.println("This is your inventory.");
-                inventory.showCreature();
-                System.out.print("\nEnter the index of the creature to set as active (or -1 to go back): ");
-                int index = sc.nextInt();
-                if (index == -1) {
-                    // Go back to the main menu
-                } else {
-                    inventory.swap(index);
-                }
-                    break;
+                    System.out.println("This is your inventory.");
+                    inventory.showCreature();
+                    System.out.print("\nEnter the index of the creature to set as active (or -1 to go back): ");
+                    int index = sc.nextInt();
+
+                    if (index == -1) {
+                        // Go back to the main menu
+                    } else {
+                        inventory.swap(index);
+                    }
+                break;
+
                 case 2:
                     inMap = true;
                     while(inMap == true){ 
@@ -90,10 +92,12 @@ public class Driver {
                             Battle battle = new Battle(creature1, enemy, inventory);
                             battle.battlePhase();
                         }
+
                         pause.nextLine();
                         System.out.print("\033c");
                     }
-                    break;
+                break;
+
                 case 3:
                     System.out.println("Select two creatures from your inventory to evolve: ");
                     inventory.showCreature();
@@ -101,30 +105,34 @@ public class Driver {
                     int index1 = sc.nextInt();
                     System.out.print("Enter the index of the second creature: ");
                     int index2 = sc.nextInt();
-            
-                    Creatures selectedCreature1 = inventory.getCreature(index1);
-                    Creatures selectedCreature2 = inventory.getCreature(index2);
-            
-                    if (selectedCreature1 != null && selectedCreature2 != null) {
-                        Creatures evolvedCreature = Creatures.evolveCreatures(selectedCreature1, selectedCreature2);
-                        if (evolvedCreature != null) {
-                            System.out.println("Evolution successful! " + evolvedCreature.getName() + " has been created.");
-                            inventory.addCreature(evolvedCreature);
+                
+                    if (index1 >= 0 && index1 < inventory.getCreatureCount() && index2 >= 0 && index2 < inventory.getCreatureCount()) {
+                        Creatures selectedCreature1 = inventory.getCreature(index1);
+                        Creatures selectedCreature2 = inventory.getCreature(index2);
+                
+                        if (selectedCreature1 != null && selectedCreature2 != null) {
+                            Creatures evolvedCreature = Creatures.evolveCreatures(selectedCreature1, selectedCreature2);
+                            if (evolvedCreature != null) {
+                                System.out.println("Evolution successful! " + evolvedCreature.getName() + " has been created.");
+                                inventory.addCreature(evolvedCreature);
+                            }
+                        } else {
+                            System.out.println("Invalid creatures selected.");
                         }
                     } else {
                         System.out.println("Invalid creature indices.");
                     }
-                    break;
+                break;
+
                 case 4:
                     System.out.println("Thank you for playing the game!");
                     game = false;
-                    break;
+                break;
+                
                 default:
                     System.out.println("Invalid selection");
             }
         }
         sc.close(); // Close the primary scanner
-        pause.close(); // Close the scanner used for clearing the console
     }
 }
-

@@ -122,7 +122,7 @@ public class Battle {
         System.out.println("\n-------------------------");
         System.out.println("BATTLE ENDED");
         System.out.println("-------------------------\n");
+
+        sc.close(); // Close the primary scanner
     }
 }
-
-
