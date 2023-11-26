@@ -5,11 +5,11 @@ import javax.swing.*;
 public class EvolandiaView {
     private JFrame window;
     private Container con;
-    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel;
-    private JLabel titleNameLabel;
+    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel;
+    private JLabel titleNameLabel, menuLabel;
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 100);
     private Font startFont = new Font ("Times New Roman", Font.PLAIN, 30);
-    private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9;
+    private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, viewInventoryButton, exploreAreaButton, evolveButton, exitButton;
     private JTextArea mainTextArea;
 
     private ImageIcon strawanderJPG = new ImageIcon("sprites\\Strawander.jpg");
@@ -214,6 +214,58 @@ public class EvolandiaView {
         menuPanel = new JPanel();
         menuPanel.setBounds(100, 100, 600, 150);
         menuPanel.setBackground(Color.black);
+
+        menuLabel = new JLabel("MENU");
+        menuLabel.setForeground(Color.pink);
+        menuLabel.setFont(titleFont);
+        menuPanel.add(menuLabel);
+
+        menuChoicePanel = new JPanel();
+        menuChoicePanel.setBounds(190, 350, 400, 150);
+        menuChoicePanel.setBackground(Color.pink);
+        menuChoicePanel.setLayout(new GridLayout(4, 1));
+
+        viewInventoryButton = new JButton("VIEW INVENTORY");
+        viewInventoryButton.setFont(startFont);
+        viewInventoryButton.setBackground(Color.black);
+        viewInventoryButton.setForeground(Color.pink);
+        menuChoicePanel.add(viewInventoryButton);
+
+        exploreAreaButton = new JButton("EXPLORE AN AREA");
+        exploreAreaButton.setFont(startFont);
+        exploreAreaButton.setBackground(Color.black);
+        exploreAreaButton.setForeground(Color.pink);
+        menuChoicePanel.add(exploreAreaButton);
+
+        evolveButton = new JButton("EVOLVE CREATURE");
+        evolveButton.setBackground(Color.black);
+        evolveButton.setForeground(Color.pink);
+        evolveButton.setFont(startFont);
+        menuChoicePanel.add(evolveButton);
+
+        exitButton = new JButton("EXIT GAME");
+        exitButton.setFont(startFont);
+        exitButton.setBackground(Color.black);
+        exitButton.setForeground(Color.pink);
+        menuChoicePanel.add(exitButton);
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent arg0){
+                System.exit(0);
+            }
+        });
+
+        con.add(menuChoicePanel);
         con.add(menuPanel);
+
     }
+
+    public void viewInventory(){
+
+    }
+
+    public void exploreArea(){
+
+    }
+
 }
