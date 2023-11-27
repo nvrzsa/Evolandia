@@ -90,4 +90,11 @@ public class Inventory{
             System.out.println("Invalid index for swapping.");
         }
     }
+
+    public void removeCreature(Creatures creatureToRemove) {
+        creature.remove(creatureToRemove);
+        System.out.println(creatureToRemove.getName() + " removed from inventory.");
+    }
 }
+
+

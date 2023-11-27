@@ -86,10 +86,10 @@ public class Creatures {
      * @return True if the creatures are eligible for evolution, false otherwise.
      */
     public static boolean isEligibleForEvolution(Creatures creature1, Creatures creature2) {
-        // Check if both creatures belong to the same family and have the same evolution level
-        return creature1.getFamily().equals(creature2.getFamily()) &&
-                creature1.getEvol() == creature2.getEvol() &&
-                creature1.getEvol() != 3; // EL3 creatures cannot evolve further
+        // Check if both creatures have the same evolution level, family, and are not EL3
+    return creature1.getEvol() == creature2.getEvol() &&
+        creature1.getFamily().equals(creature2.getFamily()) &&
+        creature1.getEvol() != 3;
     }
 
     /**
@@ -101,17 +101,15 @@ public class Creatures {
      * @return The evolved creature if the evolution is successful, null otherwise.
      */
     public static Creatures evolveCreatures(Creatures creature1, Creatures creature2) {
-        // Check eligibility for evolution
         if (isEligibleForEvolution(creature1, creature2)) {
-            // Create a new creature with the same family and an increased evolution level
+            // Create a new creature with the next evolution level and the same family
+            int nextEvoLevel = creature1.getEvol() + 1;
             String family = creature1.getFamily();
-            int newEvolLevel = creature1.getEvol() + 1; // Increment the evolution level
-            String evolvedName = "Evolved " + family; // You can modify this as needed for naming conventions
-            String type = creature1.getType(); // Assume the type remains the same for evolution
-            return new Creatures(newEvolLevel, evolvedName, type, family);
+            String evolvedName = "Evolved" + family;
+    
+            return new Creatures(nextEvoLevel, evolvedName, creature1.getType(), family);
         } else {
-            // Creatures are not eligible for evolution
-            System.out.println("These creatures are not eligible for evolution.");
+            // Evolution is not possible
             return null;
         }
     }

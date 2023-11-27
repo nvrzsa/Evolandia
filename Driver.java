@@ -10,10 +10,13 @@ public class Driver {
         boolean inMap = true;
         Creatures creature1 = null;
         Creatures enemy = null;
+
         Area area1 = new Area(5, 1);
+        Area area2 = new Area(3, 3);
+        Area area3 = new Area(4, 4);
 
         // create the starter creatures array
-        Creatures[] starter = {
+        Creatures[] EL1 = {
             new Creatures(1, "Strawander", "fire", "A"),
             new Creatures(1, "Chocowool", "fire", "B"),
             new Creatures(1, "Parfwit", "fire", "C"),
@@ -25,17 +28,41 @@ public class Driver {
             new Creatures(1, "Oshacone", "water", "I")
         };
 
+        Creatures[] EL2 = {
+            new Creatures(2, "Strawleon", "fire", "A"),
+            new Creatures(2, "Chocofluff", "fire", "B"),
+            new Creatures(2, "Parfure", "fire", "C"),
+            new Creatures(2, "Chocosaur", "grass", "D"),
+            new Creatures(2, "Golberry", "grass", "E"),
+            new Creatures(2, "Kirlicake", "grass", "F"),
+            new Creatures(2, "Tartortle", "water", "G"),
+            new Creatures(2, "Chocolish", "water", "H"),
+            new Creatures(2, "Dewice", "water", "I")
+        };
+
+        Creatures[] EL3 = {
+            new Creatures(3, "Strawizard", "fire", "A"),
+            new Creatures(3, "Candaros", "fire", "B"),
+            new Creatures(3, "Parfelure", "fire", "C"),
+            new Creatures(3, "Fudgasaur", "grass", "D"),
+            new Creatures(3, "Croberry", "grass", "E"),
+            new Creatures(3, "Velvevoir", "grass", "F"),
+            new Creatures(3, "Piestoise", "water", "G"),
+            new Creatures(3, "Icesundae", "water", "H"),
+            new Creatures(3, "Samurcone", "water", "I")
+        };
+
         while(check == false){
             System.out.println("\nWelcome to Evolandia!\n");
             System.out.println("Select your starter: \n");
-            for(int i = 0; i < starter.length; i++){
-                System.out.println(i+1 + ", " + starter[i].getName() + ", " + starter[i].getType());
+            for(int i = 0; i < EL1.length; i++){
+                System.out.println(i+1 + ", " + EL1[i].getName() + ", " + EL1[i].getType());
             }
 
             System.out.print("\nChoice: ");
             int choice = sc.nextInt();
-            if (choice >= 1 && choice <= starter.length){
-                creature1 = starter[choice - 1];
+            if (choice >= 1 && choice <= EL1.length){
+                creature1 = EL1[choice - 1];
                 inventory.addCreature(creature1);
                 System.out.println(creature1.getName() + " has been selected");
                 check = true;
@@ -77,9 +104,17 @@ public class Driver {
                         double randomNumber = new java.util.Random().nextDouble();
                         System.out.println(randomNumber);
                         area1.displayArea();
-                        System.out.println("where do you want to move: \nUP, DOWN, LEFT, RIGHT, or go back to MENU");
+                        System.out.println("Where do you want to move: \nUP, DOWN, LEFT, RIGHT, or go back to MENU");
                         System.out.print("Choice: ");
-                        String movement = sc.next();
+                        String movement = "";
+
+                        // Check if there is a next string available before reading
+                        if (sc.hasNext()) {
+                            movement = sc.next();
+                        } else {
+                            System.out.println("No input found.");
+                        }
+
                         area1.move(movement);
 
                         if(movement.equals("MENU")){
@@ -88,40 +123,50 @@ public class Driver {
 
                         if(randomNumber <= 0.4){
                             int enemyCreature = new java.util.Random().nextInt(9);
-                            enemy = starter[enemyCreature];
+                            enemy = EL1[enemyCreature];
                             Battle battle = new Battle(creature1, enemy, inventory);
                             battle.battlePhase();
                         }
 
-                        pause.nextLine();
+                        // Check if there's more input before reading the next line
+                        if (pause.hasNextLine()) {
+                            pause.nextLine();
+                        }
+
                         System.out.print("\033c");
                     }
                 break;
 
                 case 3:
-                    System.out.println("Select two creatures from your inventory to evolve: ");
-                    inventory.showCreature();
-                    System.out.print("\nEnter the index of the first creature: ");
+                    System.out.println("Select two creatures for evolution:");
+                    inventory.showCreature(); // Display creatures for selection
+
+                    System.out.print("Enter the index of the first creature: ");
                     int index1 = sc.nextInt();
                     System.out.print("Enter the index of the second creature: ");
                     int index2 = sc.nextInt();
-                
-                    if (index1 >= 0 && index1 < inventory.getCreatureCount() && index2 >= 0 && index2 < inventory.getCreatureCount()) {
-                        Creatures selectedCreature1 = inventory.getCreature(index1);
-                        Creatures selectedCreature2 = inventory.getCreature(index2);
-                
-                        if (selectedCreature1 != null && selectedCreature2 != null) {
-                            Creatures evolvedCreature = Creatures.evolveCreatures(selectedCreature1, selectedCreature2);
+
+                    Creatures creature1ForEvolution = inventory.getCreature(index1);
+                    Creatures creature2ForEvolution = inventory.getCreature(index2);
+
+                    if (creature1ForEvolution != null && creature2ForEvolution != null) {
+                        if (Creatures.isEligibleForEvolution(creature1ForEvolution, creature2ForEvolution)) {
+                            Creatures evolvedCreature = Creatures.evolveCreatures(creature1ForEvolution, creature2ForEvolution);
                             if (evolvedCreature != null) {
-                                System.out.println("Evolution successful! " + evolvedCreature.getName() + " has been created.");
-                                inventory.addCreature(evolvedCreature);
-                            }
+                            // Evolution successful, add evolved creature to inventory and remove the original creatures
+                            inventory.addCreature(evolvedCreature);
+                            inventory.removeCreature(creature1ForEvolution);
+                            inventory.removeCreature(creature2ForEvolution);
+                            System.out.println("Evolution successful! " + evolvedCreature.getName() + " added to inventory.");
                         } else {
-                            System.out.println("Invalid creatures selected.");
+                            System.out.println("Evolution failed.");
                         }
                     } else {
-                        System.out.println("Invalid creature indices.");
+                        System.out.println("Selected creatures are not eligible for evolution.");
                     }
+                } else {
+                    System.out.println("Invalid creature selection.");
+                }
                 break;
 
                 case 4:
@@ -134,5 +179,6 @@ public class Driver {
             }
         }
         sc.close(); // Close the primary scanner
+        pause.close(); // Close the 'pause' scanner
     }
 }
