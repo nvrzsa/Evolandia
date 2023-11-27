@@ -1,16 +1,18 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class EvolandiaModel {
-
-        Inventory inventory;
-        boolean check;
-        boolean game;
-        boolean inMap;
-        Creatures creature1;
-        Creatures enemy;
-        Area area1;
-        Area area2;
-        Area area3;
-        Creatures[] evoLvl1, evoLvl2, evoLvl3;
+    Inventory inventory;
+    boolean check;
+    boolean game;
+    boolean inMap;
+    Creatures creature1;
+    Creatures enemy;
+    Area area1;
+    Area area2;
+    Area area3;
+    Creatures[] evoLvl1, evoLvl2, evoLvl3;
 
         public EvolandiaModel(){
             this.inventory = new Inventory();
@@ -69,6 +71,10 @@ public class EvolandiaModel {
             };
         }
 
+        public List<Creatures> getInventoryCreatures() {
+            return this.inventory.getCreatureList();
+        }
+
         public Creatures getEvo1Index(int index){
             return evoLvl1[index];
         }
@@ -92,5 +98,4 @@ public class EvolandiaModel {
             }
             return result;
         }
-    
 }

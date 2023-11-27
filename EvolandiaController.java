@@ -12,21 +12,22 @@ public class EvolandiaController {
 
         this.evolandiaView.setChoice1(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
+            public void actionPerformed(ActionEvent arg0) {
                 evolandiaView.menuScreen();
                 int choice = 0;
                 Creatures creature1 = evolandiaModel.getEvo1Index(choice);
                 boolean result = evolandiaModel.creatureAdd(creature1);
-
-                if(result){
+        
+                if (result) {
+                    List<Creatures> inventoryCreatures = evolandiaModel.inventory.getCreatureList();
+                    evolandiaView.viewInventory(inventoryCreatures);
                     System.out.println(creature1.getName() + " has been added");
+                } else {
+                    System.out.println("Failed to add " + creature1.getName());
                 }
-                else {
-                    System.out.println("failed");
-                }
-
-            } 
+            }
         });
+        
 
         this.evolandiaView.setChoice2(new ActionListener() {
             @Override

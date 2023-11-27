@@ -6,6 +6,7 @@ import java.util.List;
 public class EvolandiaView {
     private int choice = 0;
     
+    private JPanel area1Panel, area2Panel, area3Panel;
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel, inventoryPanel;
@@ -24,12 +25,6 @@ public class EvolandiaView {
     private ImageIcon squirpieJPG = new ImageIcon("sprites\\Squirpie.jpg");
     private ImageIcon chocoliteJPG = new ImageIcon("sprites\\Chocolite.jpg");
     private ImageIcon oshaconeJPG = new ImageIcon("sprites\\Oshacone.jpg");
-
-
-    /*public static void main(String[] args) {
-        
-        new EvolandiaView();
-    }*/
 
     public EvolandiaView (){
         
@@ -65,8 +60,6 @@ public class EvolandiaView {
                 selectStarterScreen();
             }
         });
-
-        
 
         this.titlePanel.add(titleNameLabel);
         this.startButtonPanel.add(startButton);
@@ -126,6 +119,11 @@ public class EvolandiaView {
         this.viewInventoryButton.setFont(startFont);
         this.viewInventoryButton.setBackground(Color.black);
         this.viewInventoryButton.setForeground(Color.pink);
+
+        // Initialize area panels with placeholders
+        area1Panel = createAreaPanel(5, 1);
+        area2Panel = createAreaPanel(3, 3);
+        area3Panel = createAreaPanel(4, 4);
     }
 
     public void selectStarterScreen(){
@@ -214,6 +212,23 @@ public class EvolandiaView {
 
     }
 
+    private JPanel createAreaPanel(int width, int height) {
+        JPanel areaPanel = new JPanel();
+        areaPanel.setLayout(new GridLayout(height, width));
+
+        // Customize the appearance of the area panel based on width and height
+        for (int i = 0; i < width * height; i++) {
+            // Create and add components (placeholders or visuals) to the area panel
+            JLabel placeholder = new JLabel("Area " + (i + 1)); // Replace this with appropriate visuals
+            placeholder.setHorizontalAlignment(JLabel.CENTER);
+            placeholder.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Example border
+
+            areaPanel.add(placeholder);
+        }
+
+        return areaPanel;
+    }
+
     public void viewInventory(List<Creatures> creatures){
         this.menuPanel.setVisible(false);
         this.menuChoicePanel.setVisible(false);
@@ -224,8 +239,8 @@ public class EvolandiaView {
 
         this.inventoryTextArea = new JTextArea("Inventory:\n");
 
-        for(Creatures creature : creatures){
-            inventoryTextArea.append("Name: " + creature.getName()+ " Type: " + creature.getType()+ " \nFamily: " + creature.getFamily()+ " EL: " + creature.getEvol() + "\n");
+        for (Creatures creature : creatures) {
+            inventoryTextArea.append("Name: " + creature.getName() + " Type: " + creature.getType() + " \nFamily: " + creature.getFamily() + " EL: " + creature.getEvol() + "\n");
         }
 
         this.inventoryTextArea.setBounds(100, 100, 400, 200);
@@ -235,9 +250,12 @@ public class EvolandiaView {
         this.inventoryTextArea.setLineWrap(true);
         this.inventoryTextArea.setLineWrap(true);
 
+        JScrollPane scrollPane = new JScrollPane(inventoryTextArea);
+        scrollPane.setBounds(100, 100, 400, 200);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         this.inventoryPanel.add(inventoryTextArea);
-
-
         this.con.add(inventoryPanel);
     }
 
