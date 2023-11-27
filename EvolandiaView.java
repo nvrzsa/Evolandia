@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class EvolandiaView {
     private int choice = 0;
+    
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel, inventoryPanel;
@@ -30,6 +31,7 @@ public class EvolandiaView {
     }*/
 
     public EvolandiaView (){
+        
         // mainframe
         this.window = new JFrame("EVOLANDIA");
         this.window.setSize(800, 600);
@@ -71,6 +73,53 @@ public class EvolandiaView {
         this.con.add(startButtonPanel);
 
         this.window.setVisible(true);
+
+        //initialization
+
+        this.choice1 = new JButton("Strawander");
+        this.choice1.setForeground(Color.red);
+        this.choice1.setIcon(strawanderJPG);
+        this.choice1.setFont(startFont);
+
+        this.choice2 = new JButton("Chocowool");
+        this.choice2.setForeground(Color.red);
+        this.choice2.setIcon(chocowoolJPG);
+        this.choice2.setFont(startFont);
+
+        this.choice3 = new JButton("Parfwit");
+        this.choice3.setForeground(Color.red);
+        this.choice3.setIcon(parfwitJPG);
+        this.choice3.setFont(startFont);
+
+        this.choice4 = new JButton("Brownisaur");
+        this.choice4.setForeground(Color.green);
+        this.choice4.setIcon(brownisaurJPG);
+        this.choice4.setFont(startFont);
+
+        this.choice5 = new JButton("Frubat");
+        this.choice5.setForeground(Color.green);
+        this.choice5.setIcon(frubatJPG);
+        this.choice5.setFont(startFont);
+
+        this.choice6 = new JButton("Malts");
+        this.choice6.setForeground(Color.green);
+        this.choice6.setIcon(maltsJPG);
+        this.choice6.setFont(startFont);
+
+        this.choice7 = new JButton("Squirpie");
+        this.choice7.setForeground(Color.blue);
+        this.choice7.setIcon(squirpieJPG);
+        this.choice7.setFont(startFont);
+
+        this.choice8 = new JButton("Chocolite");
+        this.choice8.setForeground(Color.blue);
+        this.choice8.setIcon(chocoliteJPG);
+        this.choice8.setFont(startFont);
+
+        this.choice9 = new JButton("Oshacone");
+        this.choice9.setForeground(Color.blue);
+        this.choice9.setIcon(oshaconeJPG);
+        this.choice9.setFont(startFont);
     }
 
     public void selectStarterScreen(){
@@ -98,62 +147,15 @@ public class EvolandiaView {
         this.choiceButtonPanel.setBackground(Color.black);
         this.con.add(choiceButtonPanel);
 
-        this.choice1 = new JButton("Strawander");
-        this.choice1.setForeground(Color.red);
-        this.choice1.setIcon(strawanderJPG);
-        this.choice1.setFont(startFont);
         this.choiceButtonPanel.add(choice1);
- 
-        this.choice2 = new JButton("Chocowool");
-        this.choice2.setForeground(Color.red);
-        this.choice2.setIcon(chocowoolJPG);
-        this.choice2.setFont(startFont);
         this.choiceButtonPanel.add(choice2);
-
-        this.choice3 = new JButton("Parfwit");
-        this.choice3.setForeground(Color.red);
-        this.choice3.setIcon(parfwitJPG);
-        this.choice3.setFont(startFont);
         this.choiceButtonPanel.add(choice3);
-
-        this.choice4 = new JButton("Brownisaur");
-        this.choice4.setForeground(Color.green);
-        this.choice4.setIcon(brownisaurJPG);
-        this.choice4.setFont(startFont);
         this.choiceButtonPanel.add(choice4);
-
-        this.choice5 = new JButton("Frubat");
-        this.choice5.setForeground(Color.green);
-        this.choice5.setIcon(frubatJPG);
-        this.choice5.setFont(startFont);
         this.choiceButtonPanel.add(choice5);
-
-        this.choice6 = new JButton("Malts");
-        this.choice6.setForeground(Color.green);
-        this.choice6.setIcon(maltsJPG);
-        this.choice6.setFont(startFont);
         this.choiceButtonPanel.add(choice6);
-
-        this.choice7 = new JButton("Squirpie");
-        this.choice7.setForeground(Color.blue);
-        this.choice7.setIcon(squirpieJPG);
-        this.choice7.setFont(startFont);
         this.choiceButtonPanel.add(choice7);
-
-        this.choice8 = new JButton("Chocolite");
-        this.choice8.setForeground(Color.blue);
-        this.choice8.setIcon(chocoliteJPG);
-        this.choice8.setFont(startFont);
         this.choiceButtonPanel.add(choice8);
-
-        this.choice9 = new JButton("Oshacone");
-        this.choice9.setForeground(Color.blue);
-        this.choice9.setIcon(oshaconeJPG);
-        this.choice9.setFont(startFont);
         this.choiceButtonPanel.add(choice9);
-
-
-        
 
     }
 
@@ -211,7 +213,6 @@ public class EvolandiaView {
     }
 
     public void viewInventory(){
-
 
     }
 
