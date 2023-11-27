@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.List;
 
 public class EvolandiaView {
     private int choice = 0;
@@ -12,17 +13,17 @@ public class EvolandiaView {
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 100);
     private Font startFont = new Font ("Times New Roman", Font.PLAIN, 30);
     private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, viewInventoryButton, exploreAreaButton, evolveButton, exitButton;
-    private JTextArea mainTextArea;
+    private JTextArea mainTextArea, inventoryTextArea;
 
     private ImageIcon strawanderJPG = new ImageIcon("sprites\\Strawander.jpg");
-    private ImageIcon chocowoolJPG = new ImageIcon("sprites\\chocowool.jpg");
-    private ImageIcon parfwitJPG = new ImageIcon("sprites\\parfwit.jpg");
-    private ImageIcon brownisaurJPG = new ImageIcon("sprites\\brownisaur.jpg");
-    private ImageIcon frubatJPG = new ImageIcon("sprites\\frubat.jpg");
-    private ImageIcon maltsJPG = new ImageIcon("sprites\\malts.jpg");
-    private ImageIcon squirpieJPG = new ImageIcon("sprites\\squirpie.jpg");
-    private ImageIcon chocoliteJPG = new ImageIcon("sprites\\chocolite.jpg");
-    private ImageIcon oshaconeJPG = new ImageIcon("sprites\\oshacone.jpg");
+    private ImageIcon chocowoolJPG = new ImageIcon("sprites\\Chocowool.jpg");
+    private ImageIcon parfwitJPG = new ImageIcon("sprites\\Parfwit.jpg");
+    private ImageIcon brownisaurJPG = new ImageIcon("sprites\\Brownisaur.jpg");
+    private ImageIcon frubatJPG = new ImageIcon("sprites\\Frubat.jpg");
+    private ImageIcon maltsJPG = new ImageIcon("sprites\\Malts.jpg");
+    private ImageIcon squirpieJPG = new ImageIcon("sprites\\Squirpie.jpg");
+    private ImageIcon chocoliteJPG = new ImageIcon("sprites\\Chocolite.jpg");
+    private ImageIcon oshaconeJPG = new ImageIcon("sprites\\Oshacone.jpg");
 
 
     /*public static void main(String[] args) {
@@ -120,6 +121,11 @@ public class EvolandiaView {
         this.choice9.setForeground(Color.blue);
         this.choice9.setIcon(oshaconeJPG);
         this.choice9.setFont(startFont);
+
+        this.viewInventoryButton = new JButton("VIEW INVENTORY");
+        this.viewInventoryButton.setFont(startFont);
+        this.viewInventoryButton.setBackground(Color.black);
+        this.viewInventoryButton.setForeground(Color.pink);
     }
 
     public void selectStarterScreen(){
@@ -177,10 +183,6 @@ public class EvolandiaView {
         this.menuChoicePanel.setBackground(Color.pink);
         this.menuChoicePanel.setLayout(new GridLayout(4, 1));
 
-        this.viewInventoryButton = new JButton("VIEW INVENTORY");
-        this.viewInventoryButton.setFont(startFont);
-        this.viewInventoryButton.setBackground(Color.black);
-        this.viewInventoryButton.setForeground(Color.pink);
         this.menuChoicePanel.add(viewInventoryButton);
 
         this.exploreAreaButton = new JButton("EXPLORE AN AREA");
@@ -212,8 +214,31 @@ public class EvolandiaView {
 
     }
 
-    public void viewInventory(){
+    public void viewInventory(List<Creatures> creatures){
+        this.menuPanel.setVisible(false);
+        this.menuChoicePanel.setVisible(false);
 
+        this.inventoryPanel = new JPanel();
+        this.inventoryPanel.setBounds(100, 100, 600, 400);
+        this.inventoryPanel.setBackground(Color.black);
+
+        this.inventoryTextArea = new JTextArea("Inventory:\n");
+
+        for(Creatures creature : creatures){
+            inventoryTextArea.append("Name: " + creature.getName()+ " Type: " + creature.getType()+ " \nFamily: " + creature.getFamily()+ " EL: " + creature.getEvol() + "\n");
+        }
+
+        this.inventoryTextArea.setBounds(100, 100, 400, 200);
+        this.inventoryTextArea.setBackground(Color.BLACK);
+        this.inventoryTextArea.setForeground(Color.pink);
+        this.inventoryTextArea.setFont(startFont);
+        this.inventoryTextArea.setLineWrap(true);
+        this.inventoryTextArea.setLineWrap(true);
+
+        this.inventoryPanel.add(inventoryTextArea);
+
+
+        this.con.add(inventoryPanel);
     }
 
     public void exploreArea(){
@@ -254,6 +279,10 @@ public class EvolandiaView {
 
     public void setChoice9(ActionListener actionListener){
         this.choice9.addActionListener(actionListener);
+    }
+
+    public void inventoryButton(ActionListener actionListener){
+        this.viewInventoryButton.addActionListener(actionListener);
     }
 
 }

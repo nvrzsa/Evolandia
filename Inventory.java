@@ -95,6 +95,10 @@ public class Inventory{
         creature.remove(creatureToRemove);
         System.out.println(creatureToRemove.getName() + " removed from inventory.");
     }
+
+    public List<Creatures> getCreatureList(){
+        return creature;
+    }
 }
 
 

@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 public class EvolandiaController {
     private EvolandiaView evolandiaView;
@@ -169,6 +170,14 @@ public class EvolandiaController {
                 }
 
             } 
+        });
+
+        this.evolandiaView.inventoryButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+                List<Creatures> inventoryCreatures = evolandiaModel.inventory.getCreatureList();
+                evolandiaView.viewInventory(inventoryCreatures);
+            }
         });
 
     }
