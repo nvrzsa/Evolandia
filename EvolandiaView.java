@@ -3,9 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class EvolandiaView {
+    private int choice = 0;
     private JFrame window;
     private Container con;
-    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel;
+    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel, inventoryPanel;
     private JLabel titleNameLabel, menuLabel;
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 100);
     private Font startFont = new Font ("Times New Roman", Font.PLAIN, 30);
@@ -23,39 +24,39 @@ public class EvolandiaView {
     private ImageIcon oshaconeJPG = new ImageIcon("sprites\\oshacone.jpg");
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         
         new EvolandiaView();
-    }
+    }*/
 
     public EvolandiaView (){
         // mainframe
-        window = new JFrame("EVOLANDIA");
-        window.setSize(800, 600);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.pink);
-        window.setLayout(null);
-        con = window.getContentPane();
+        this.window = new JFrame("EVOLANDIA");
+        this.window.setSize(800, 600);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.getContentPane().setBackground(Color.pink);
+        this.window.setLayout(null);
+        this.con = window.getContentPane();
 
         // title Panel
-        titlePanel = new JPanel();
-        titlePanel.setBounds(100, 100, 600, 150);
-        titlePanel.setBackground(Color.pink);
-        titleNameLabel = new JLabel("EVOLANDIA");
-        titleNameLabel.setForeground(Color.black);
-        titleNameLabel.setFont(titleFont);
+        this.titlePanel = new JPanel();
+        this.titlePanel.setBounds(100, 100, 600, 150);
+        this.titlePanel.setBackground(Color.pink);
+        this.titleNameLabel = new JLabel("EVOLANDIA");
+        this.titleNameLabel.setForeground(Color.black);
+        this.titleNameLabel.setFont(titleFont);
 
         // start Button Panel
-        startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(300, 350, 200, 100);
-        startButtonPanel.setBackground(Color.pink);
+        this.startButtonPanel = new JPanel();
+        this.startButtonPanel.setBounds(300, 350, 200, 100);
+        this.startButtonPanel.setBackground(Color.pink);
 
         // button in start Button Panel
-        startButton = new JButton("START");
-        startButton.setBackground(Color.black);
-        startButton.setForeground(Color.pink);
-        startButton.setFont(startFont);
-        startButton.addActionListener(new ActionListener() {
+        this.startButton = new JButton("START");
+        this.startButton.setBackground(Color.black);
+        this.startButton.setForeground(Color.pink);
+        this.startButton.setFont(startFont);
+        this.startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 selectStarterScreen();
@@ -64,208 +65,194 @@ public class EvolandiaView {
 
         
 
-        titlePanel.add(titleNameLabel);
-        startButtonPanel.add(startButton);
-        con.add(titlePanel);
-        con.add(startButtonPanel);
+        this.titlePanel.add(titleNameLabel);
+        this.startButtonPanel.add(startButton);
+        this.con.add(titlePanel);
+        this.con.add(startButtonPanel);
 
-        window.setVisible(true);
+        this.window.setVisible(true);
     }
 
     public void selectStarterScreen(){
 
-        titlePanel.setVisible(false);
-        startButtonPanel.setVisible(false);
+        this.titlePanel.setVisible(false);
+        this.startButtonPanel.setVisible(false);
 
         // main Text Panel
-        mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(10, 10, 600, 140);
-        mainTextPanel.setBackground(Color.pink);
-        con.add(mainTextPanel);
+        this.mainTextPanel = new JPanel();
+        this.mainTextPanel.setBounds(10, 10, 600, 140);
+        this.mainTextPanel.setBackground(Color.pink);
+        this.con.add(mainTextPanel);
 
-        mainTextArea = new JTextArea("Welcome to EVOLANDIA \nSelect your starter (red = fire, green = grass, blue = water)");
-        mainTextArea.setBounds(100, 100, 600, 140);
-        mainTextArea.setBackground(Color.BLACK);
-        mainTextArea.setForeground(Color.pink);
-        mainTextArea.setFont(startFont);
-        mainTextArea.setLineWrap(true);
-        mainTextPanel.add(mainTextArea);
+        this.mainTextArea = new JTextArea("Welcome to EVOLANDIA \nSelect your starter (red = fire, green = grass, blue = water)");
+        this.mainTextArea.setBounds(100, 100, 600, 140);
+        this.mainTextArea.setBackground(Color.BLACK);
+        this.mainTextArea.setForeground(Color.pink);
+        this.mainTextArea.setFont(startFont);
+        this.mainTextArea.setLineWrap(true);
+        this.mainTextPanel.add(mainTextArea);
 
         // choice button Panel
-        choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(10, 150, 700, 300);
-        choiceButtonPanel.setBackground(Color.black);
-        con.add(choiceButtonPanel);
+        this.choiceButtonPanel = new JPanel();
+        this.choiceButtonPanel.setBounds(10, 150, 700, 300);
+        this.choiceButtonPanel.setBackground(Color.black);
+        this.con.add(choiceButtonPanel);
 
-        choice1 = new JButton("Strawander");
-        choice1.setForeground(Color.red);
-        choice1.setIcon(strawanderJPG);
-        choice1.setFont(startFont);
-        choice1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice1);
+        this.choice1 = new JButton("Strawander");
+        this.choice1.setForeground(Color.red);
+        this.choice1.setIcon(strawanderJPG);
+        this.choice1.setFont(startFont);
+        this.choiceButtonPanel.add(choice1);
  
-        choice2 = new JButton("Chocowool");
-        choice2.setForeground(Color.red);
-        choice2.setIcon(chocowoolJPG);
-        choice2.setFont(startFont);
-        choice2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice2);
+        this.choice2 = new JButton("Chocowool");
+        this.choice2.setForeground(Color.red);
+        this.choice2.setIcon(chocowoolJPG);
+        this.choice2.setFont(startFont);
+        this.choiceButtonPanel.add(choice2);
 
-        choice3 = new JButton("Parfwit");
-        choice3.setForeground(Color.red);
-        choice3.setIcon(parfwitJPG);
-        choice3.setFont(startFont);
-        choice3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice3);
+        this.choice3 = new JButton("Parfwit");
+        this.choice3.setForeground(Color.red);
+        this.choice3.setIcon(parfwitJPG);
+        this.choice3.setFont(startFont);
+        this.choiceButtonPanel.add(choice3);
 
-        choice4 = new JButton("Brownisaur");
-        choice4.setForeground(Color.green);
-        choice4.setIcon(brownisaurJPG);
-        choice4.setFont(startFont);
-        choice4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice4);
+        this.choice4 = new JButton("Brownisaur");
+        this.choice4.setForeground(Color.green);
+        this.choice4.setIcon(brownisaurJPG);
+        this.choice4.setFont(startFont);
+        this.choiceButtonPanel.add(choice4);
 
-        choice5 = new JButton("Frubat");
-        choice5.setForeground(Color.green);
-        choice5.setIcon(frubatJPG);
-        choice5.setFont(startFont);
-        choice5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice5);
+        this.choice5 = new JButton("Frubat");
+        this.choice5.setForeground(Color.green);
+        this.choice5.setIcon(frubatJPG);
+        this.choice5.setFont(startFont);
+        this.choiceButtonPanel.add(choice5);
 
-        choice6 = new JButton("Malts");
-        choice6.setForeground(Color.green);
-        choice6.setIcon(maltsJPG);
-        choice6.setFont(startFont);
-        choice6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice6);
+        this.choice6 = new JButton("Malts");
+        this.choice6.setForeground(Color.green);
+        this.choice6.setIcon(maltsJPG);
+        this.choice6.setFont(startFont);
+        this.choiceButtonPanel.add(choice6);
 
-        choice7 = new JButton("Squirpie");
-        choice7.setForeground(Color.blue);
-        choice7.setIcon(squirpieJPG);
-        choice7.setFont(startFont);
-        choice7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice7);
+        this.choice7 = new JButton("Squirpie");
+        this.choice7.setForeground(Color.blue);
+        this.choice7.setIcon(squirpieJPG);
+        this.choice7.setFont(startFont);
+        this.choiceButtonPanel.add(choice7);
 
-        choice8 = new JButton("Chocolite");
-        choice8.setForeground(Color.blue);
-        choice8.setIcon(chocoliteJPG);
-        choice8.setFont(startFont);
-        choice8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice8);
+        this.choice8 = new JButton("Chocolite");
+        this.choice8.setForeground(Color.blue);
+        this.choice8.setIcon(chocoliteJPG);
+        this.choice8.setFont(startFont);
+        this.choiceButtonPanel.add(choice8);
 
-        choice9 = new JButton("Oshacone");
-        choice9.setForeground(Color.blue);
-        choice9.setIcon(oshaconeJPG);
-        choice9.setFont(startFont);
-        choice9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-                menuScreen();
-            } 
-        });
-        choiceButtonPanel.add(choice9);
+        this.choice9 = new JButton("Oshacone");
+        this.choice9.setForeground(Color.blue);
+        this.choice9.setIcon(oshaconeJPG);
+        this.choice9.setFont(startFont);
+        this.choiceButtonPanel.add(choice9);
+
+
+        
 
     }
 
     public void menuScreen() {
-        mainTextPanel.setVisible(false);
-        choiceButtonPanel.setVisible(false);
+        this.mainTextPanel.setVisible(false);
+        this.choiceButtonPanel.setVisible(false);
 
-        menuPanel = new JPanel();
-        menuPanel.setBounds(100, 100, 600, 150);
-        menuPanel.setBackground(Color.black);
+        this.menuPanel = new JPanel();
+        this.menuPanel.setBounds(100, 100, 600, 150);
+        this.menuPanel.setBackground(Color.black);
 
-        menuLabel = new JLabel("MENU");
-        menuLabel.setForeground(Color.pink);
-        menuLabel.setFont(titleFont);
-        menuPanel.add(menuLabel);
+        this.menuLabel = new JLabel("MENU");
+        this.menuLabel.setForeground(Color.pink);
+        this.menuLabel.setFont(titleFont);
+        this.menuPanel.add(menuLabel);
 
-        menuChoicePanel = new JPanel();
-        menuChoicePanel.setBounds(190, 350, 400, 150);
-        menuChoicePanel.setBackground(Color.pink);
-        menuChoicePanel.setLayout(new GridLayout(4, 1));
+        this.menuChoicePanel = new JPanel();
+        this.menuChoicePanel.setBounds(190, 350, 400, 150);
+        this.menuChoicePanel.setBackground(Color.pink);
+        this.menuChoicePanel.setLayout(new GridLayout(4, 1));
 
-        viewInventoryButton = new JButton("VIEW INVENTORY");
-        viewInventoryButton.setFont(startFont);
-        viewInventoryButton.setBackground(Color.black);
-        viewInventoryButton.setForeground(Color.pink);
-        menuChoicePanel.add(viewInventoryButton);
+        this.viewInventoryButton = new JButton("VIEW INVENTORY");
+        this.viewInventoryButton.setFont(startFont);
+        this.viewInventoryButton.setBackground(Color.black);
+        this.viewInventoryButton.setForeground(Color.pink);
+        this.menuChoicePanel.add(viewInventoryButton);
 
-        exploreAreaButton = new JButton("EXPLORE AN AREA");
-        exploreAreaButton.setFont(startFont);
-        exploreAreaButton.setBackground(Color.black);
-        exploreAreaButton.setForeground(Color.pink);
-        menuChoicePanel.add(exploreAreaButton);
+        this.exploreAreaButton = new JButton("EXPLORE AN AREA");
+        this.exploreAreaButton.setFont(startFont);
+        this.exploreAreaButton.setBackground(Color.black);
+        this.exploreAreaButton.setForeground(Color.pink);
+        this.menuChoicePanel.add(exploreAreaButton);
 
-        evolveButton = new JButton("EVOLVE CREATURE");
-        evolveButton.setBackground(Color.black);
-        evolveButton.setForeground(Color.pink);
-        evolveButton.setFont(startFont);
-        menuChoicePanel.add(evolveButton);
+        this.evolveButton = new JButton("EVOLVE CREATURE");
+        this.evolveButton.setBackground(Color.black);
+        this.evolveButton.setForeground(Color.pink);
+        this.evolveButton.setFont(startFont);
+        this.menuChoicePanel.add(evolveButton);
 
-        exitButton = new JButton("EXIT GAME");
-        exitButton.setFont(startFont);
-        exitButton.setBackground(Color.black);
-        exitButton.setForeground(Color.pink);
-        menuChoicePanel.add(exitButton);
-        exitButton.addActionListener(new ActionListener() {
+        this.exitButton = new JButton("EXIT GAME");
+        this.exitButton.setFont(startFont);
+        this.exitButton.setBackground(Color.black);
+        this.exitButton.setForeground(Color.pink);
+        this.menuChoicePanel.add(exitButton);
+        this.exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent arg0){
                 System.exit(0);
             }
         });
 
-        con.add(menuChoicePanel);
-        con.add(menuPanel);
+        this.con.add(menuChoicePanel);
+        this.con.add(menuPanel);
 
     }
 
     public void viewInventory(){
 
+
     }
 
     public void exploreArea(){
 
+    }
+
+    public void setChoice1(ActionListener actionListener){
+        this.choice1.addActionListener(actionListener);
+    }
+
+    public void setChoice2(ActionListener actionListener){
+        this.choice2.addActionListener(actionListener);
+    }
+
+    public void setChoice3(ActionListener actionListener){
+        this.choice3.addActionListener(actionListener);
+    }
+
+    public void setChoice4(ActionListener actionListener){
+        this.choice4.addActionListener(actionListener);
+    }
+
+    public void setChoice5(ActionListener actionListener){
+        this.choice5.addActionListener(actionListener);
+    }
+
+    public void setChoice6(ActionListener actionListener){
+        this.choice6.addActionListener(actionListener);
+    }
+
+    public void setChoice7(ActionListener actionListener){
+        this.choice7.addActionListener(actionListener);
+    }
+
+    public void setChoice8(ActionListener actionListener){
+        this.choice8.addActionListener(actionListener);
+    }
+
+    public void setChoice9(ActionListener actionListener){
+        this.choice9.addActionListener(actionListener);
     }
 
 }
