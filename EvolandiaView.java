@@ -6,7 +6,6 @@ import java.util.List;
 public class EvolandiaView {
     private int choice = 0;
     
-    private JPanel area1Panel, area2Panel, area3Panel;
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel, inventoryPanel;
@@ -119,11 +118,6 @@ public class EvolandiaView {
         this.viewInventoryButton.setFont(startFont);
         this.viewInventoryButton.setBackground(Color.black);
         this.viewInventoryButton.setForeground(Color.pink);
-
-        // Initialize area panels with placeholders
-        area1Panel = createAreaPanel(5, 1);
-        area2Panel = createAreaPanel(3, 3);
-        area3Panel = createAreaPanel(4, 4);
     }
 
     public void selectStarterScreen(){
@@ -209,24 +203,6 @@ public class EvolandiaView {
 
         this.con.add(menuChoicePanel);
         this.con.add(menuPanel);
-
-    }
-
-    private JPanel createAreaPanel(int width, int height) {
-        JPanel areaPanel = new JPanel();
-        areaPanel.setLayout(new GridLayout(height, width));
-
-        // Customize the appearance of the area panel based on width and height
-        for (int i = 0; i < width * height; i++) {
-            // Create and add components (placeholders or visuals) to the area panel
-            JLabel placeholder = new JLabel("Area " + (i + 1)); // Replace this with appropriate visuals
-            placeholder.setHorizontalAlignment(JLabel.CENTER);
-            placeholder.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Example border
-
-            areaPanel.add(placeholder);
-        }
-
-        return areaPanel;
     }
 
     public void viewInventory(List<Creatures> creatures){
