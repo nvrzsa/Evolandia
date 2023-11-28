@@ -120,6 +120,11 @@ public class EvolandiaView {
         this.viewInventoryButton.setFont(startFont);
         this.viewInventoryButton.setBackground(Color.black);
         this.viewInventoryButton.setForeground(Color.pink);
+
+        this.exploreAreaButton = new JButton("EXPLORE AN AREA");
+        this.exploreAreaButton.setFont(startFont);
+        this.exploreAreaButton.setBackground(Color.black);
+        this.exploreAreaButton.setForeground(Color.pink);
     }
 
     public void selectStarterScreen(){
@@ -176,12 +181,9 @@ public class EvolandiaView {
         this.menuChoicePanel.setBounds(190, 350, 400, 150);
         this.menuChoicePanel.setBackground(Color.pink);
         this.menuChoicePanel.setLayout(new GridLayout(4, 1));
+
         this.menuChoicePanel.add(viewInventoryButton);
 
-        this.exploreAreaButton = new JButton("EXPLORE AN AREA");
-        this.exploreAreaButton.setFont(startFont);
-        this.exploreAreaButton.setBackground(Color.black);
-        this.exploreAreaButton.setForeground(Color.pink);
         this.menuChoicePanel.add(exploreAreaButton);
 
         this.evolveButton = new JButton("EVOLVE CREATURE");
@@ -249,8 +251,8 @@ public class EvolandiaView {
     }
 
     public void exploreArea() {
-        this.mainTextPanel.setVisible(false);
-        this.choiceButtonPanel.setVisible(false);
+        this.menuPanel.setVisible(false);
+        this.menuChoicePanel.setVisible(false);
     
         this.menuPanel = new JPanel();
         this.menuPanel.setBounds(100, 100, 600, 150);
@@ -276,7 +278,21 @@ public class EvolandiaView {
                 showAreaSelectionButtons();
             }
         });
+
+        this.mainMenuButton = new JButton("MAIN MENU");
+        this.mainMenuButton.setFont(startFont);
+        this.mainMenuButton.setBackground(Color.black);
+        this.mainMenuButton.setForeground(Color.pink);
+
+        this.mainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showMainMenu();
+            }
+        });
+
         this.menuChoicePanel.add(exploreAreasButton);
+        this.menuChoicePanel.add(mainMenuButton);
     
         this.con.add(menuChoicePanel);
         this.con.add(menuPanel);
@@ -332,6 +348,7 @@ public class EvolandiaView {
     
     private void showMainMenu(){
         inventoryPanel.setVisible(false);
+
         menuScreen();
     }
 
@@ -373,5 +390,9 @@ public class EvolandiaView {
 
     public void inventoryButton(ActionListener actionListener){
         this.viewInventoryButton.addActionListener(actionListener);
+    }
+
+    public void exploreButton(ActionListener actionListener){
+        this.exploreAreaButton.addActionListener(actionListener);
     }
 }

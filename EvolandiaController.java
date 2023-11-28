@@ -19,8 +19,6 @@ public class EvolandiaController {
                 boolean result = evolandiaModel.creatureAdd(creature1);
         
                 if (result) {
-                    List<Creatures> inventoryCreatures = evolandiaModel.inventory.getCreatureList();
-                    evolandiaView.viewInventory(inventoryCreatures);
                     System.out.println(creature1.getName() + " has been added");
                 } else {
                     System.out.println("Failed to add " + creature1.getName());
@@ -178,6 +176,13 @@ public class EvolandiaController {
             public void actionPerformed(ActionEvent arg0){
                 List<Creatures> inventoryCreatures = evolandiaModel.inventory.getCreatureList();
                 evolandiaView.viewInventory(inventoryCreatures);
+            }
+        });
+
+        this.evolandiaView.exploreButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+                evolandiaView.exploreArea();
             }
         });
 
