@@ -4,15 +4,17 @@ import javax.swing.*;
 import java.util.List;
 
 public class EvolandiaView {
-    private int choice = 0;
     
     private JFrame window;
     private Container con;
-    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, menuPanel, menuChoicePanel, inventoryPanel;
+    private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, 
+                   menuPanel, menuChoicePanel, inventoryPanel;
     private JLabel titleNameLabel, menuLabel;
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 100);
     private Font startFont = new Font ("Times New Roman", Font.PLAIN, 30);
-    private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, choice7, choice8, choice9, viewInventoryButton, exploreAreaButton, evolveButton, exitButton;
+    private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, 
+                    choice7, choice8, choice9, mainMenuButton, viewInventoryButton, exploreAreaButton, 
+                    evolveButton, exitButton;
     private JTextArea mainTextArea, inventoryTextArea;
 
     private ImageIcon strawanderJPG = new ImageIcon("sprites\\Strawander.jpg");
@@ -174,7 +176,6 @@ public class EvolandiaView {
         this.menuChoicePanel.setBounds(190, 350, 400, 150);
         this.menuChoicePanel.setBackground(Color.pink);
         this.menuChoicePanel.setLayout(new GridLayout(4, 1));
-
         this.menuChoicePanel.add(viewInventoryButton);
 
         this.exploreAreaButton = new JButton("EXPLORE AN AREA");
@@ -188,6 +189,7 @@ public class EvolandiaView {
         this.evolveButton.setForeground(Color.pink);
         this.evolveButton.setFont(startFont);
         this.menuChoicePanel.add(evolveButton);
+
 
         this.exitButton = new JButton("EXIT GAME");
         this.exitButton.setFont(startFont);
@@ -216,7 +218,9 @@ public class EvolandiaView {
         this.inventoryTextArea = new JTextArea("Inventory:\n");
 
         for (Creatures creature : creatures) {
-            inventoryTextArea.append("Name: " + creature.getName() + " Type: " + creature.getType() + " \nFamily: " + creature.getFamily() + " EL: " + creature.getEvol() + "\n");
+            inventoryTextArea.append("Name: " + creature.getName() + " Type: " + creature.getType() + 
+            " \nFamily: " + creature.getFamily() + " EL: " + creature.getEvol() + "\n");
+            
         }
 
         this.inventoryTextArea.setBounds(100, 100, 400, 200);
@@ -226,17 +230,109 @@ public class EvolandiaView {
         this.inventoryTextArea.setLineWrap(true);
         this.inventoryTextArea.setLineWrap(true);
 
-        JScrollPane scrollPane = new JScrollPane(inventoryTextArea);
-        scrollPane.setBounds(100, 100, 400, 200);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
         this.inventoryPanel.add(inventoryTextArea);
         this.con.add(inventoryPanel);
+
+        this.mainMenuButton = new JButton("MAIN MENU");
+        this.mainMenuButton.setFont(startFont);
+        this.mainMenuButton.setBackground(Color.black);
+        this.mainMenuButton.setForeground(Color.pink);
+
+        this.mainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showMainMenu();
+            }
+        });
+
+        this.inventoryPanel.add(mainMenuButton);
     }
 
-    public void exploreArea(){
+    public void exploreArea() {
+        this.mainTextPanel.setVisible(false);
+        this.choiceButtonPanel.setVisible(false);
+    
+        this.menuPanel = new JPanel();
+        this.menuPanel.setBounds(100, 100, 600, 150);
+        this.menuPanel.setBackground(Color.black);
+    
+        this.menuLabel = new JLabel("EXPLORE AREAS");
+        this.menuLabel.setForeground(Color.pink);
+        this.menuLabel.setFont(titleFont);
+        this.menuPanel.add(menuLabel);
+    
+        this.menuChoicePanel = new JPanel();
+        this.menuChoicePanel.setBounds(190, 350, 400, 150);
+        this.menuChoicePanel.setBackground(Color.pink);
+        this.menuChoicePanel.setLayout(new GridLayout(4, 1));
+    
+        JButton exploreAreasButton = new JButton("EXPLORE AREAS");
+        exploreAreasButton.setFont(startFont);
+        exploreAreasButton.setBackground(Color.black);
+        exploreAreasButton.setForeground(Color.pink);
+        exploreAreasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showAreaSelectionButtons();
+            }
+        });
+        this.menuChoicePanel.add(exploreAreasButton);
+    
+        this.con.add(menuChoicePanel);
+        this.con.add(menuPanel);
+    }
 
+    private void showAreaSelectionButtons() {
+        this.menuChoicePanel.removeAll(); // Clear existing components
+        this.menuChoicePanel.setLayout(new GridLayout(4, 1));
+    
+        JButton area1Button = new JButton("AREA 1");
+        area1Button.setFont(startFont);
+        area1Button.setBackground(Color.black);
+        area1Button.setForeground(Color.pink);
+        area1Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainTextArea.setText("Welcome to Area 1!");
+                // Other actions specific to Area 1 can be added here
+            }
+        });
+    
+        JButton area2Button = new JButton("AREA 2");
+        area2Button.setFont(startFont);
+        area2Button.setBackground(Color.black);
+        area2Button.setForeground(Color.pink);
+        area2Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainTextArea.setText("Welcome to Area 2!");
+                // Other actions specific to Area 2 can be added here
+            }
+        });
+    
+        JButton area3Button = new JButton("AREA 3");
+        area3Button.setFont(startFont);
+        area3Button.setBackground(Color.black);
+        area3Button.setForeground(Color.pink);
+        area3Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainTextArea.setText("Welcome to Area 3!");
+                // Other actions specific to Area 3 can be added here
+            }
+        });
+    
+        this.menuChoicePanel.add(area1Button);
+        this.menuChoicePanel.add(area2Button);
+        this.menuChoicePanel.add(area3Button);
+    
+        this.con.revalidate(); // Revalidate the container to reflect changes
+        this.con.repaint();
+    }
+    
+    private void showMainMenu(){
+        inventoryPanel.setVisible(false);
+        menuScreen();
     }
 
     public void setChoice1(ActionListener actionListener){
@@ -278,5 +374,4 @@ public class EvolandiaView {
     public void inventoryButton(ActionListener actionListener){
         this.viewInventoryButton.addActionListener(actionListener);
     }
-
 }
