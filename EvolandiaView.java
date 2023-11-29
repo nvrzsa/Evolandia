@@ -6,6 +6,8 @@ import java.util.List;
 public class EvolandiaView {
 
     private int row, col;
+    private int playerRow = 0;
+    private int playerCol = 0;
     
     private JFrame window;
     private Container con;
