@@ -185,6 +185,25 @@ public class EvolandiaController {
                 evolandiaView.exploreArea();
             }
         });
+
+        evolandiaView.setEvolveButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Get the selected creatures from the view
+                Creatures selectedCreature1 = evolandiaView.getSelectedCreature1();
+                Creatures selectedCreature2 = evolandiaView.getSelectedCreature2();
+        
+                boolean evolutionSuccess = evolandiaModel.evolveCreatures(selectedCreature1, selectedCreature2);
+                
+                if (evolutionSuccess) {
+                    // Evolution successful, update view with success message or actions
+                    evolandiaView.displayEvolutionSuccess();
+                } else {
+                    // Evolution failed, update view with failure message or actions
+                    evolandiaView.displayEvolutionFailure();
+                }
+            }
+        });
         
 
     }

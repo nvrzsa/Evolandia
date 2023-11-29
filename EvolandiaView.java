@@ -19,7 +19,10 @@ public class EvolandiaView {
                     evolveButton, exitButton, up, down, left, right;
     private JTextArea mainTextArea, inventoryTextArea;
     private JLabel[][] areaLabel;
+
     private JComboBox<String> areaChoice;
+    private JComboBox<String> creatureSelectionComboBox;
+    private EvolandiaModel evolandiaModel;
     
     private ImageIcon strawanderJPG = new ImageIcon("sprites\\Strawander.jpg");
     private ImageIcon chocowoolJPG = new ImageIcon("sprites\\Chocowool.jpg");
@@ -31,7 +34,8 @@ public class EvolandiaView {
     private ImageIcon chocoliteJPG = new ImageIcon("sprites\\Chocolite.jpg");
     private ImageIcon oshaconeJPG = new ImageIcon("sprites\\Oshacone.jpg");
 
-    public EvolandiaView (){
+    public EvolandiaView (EvolandiaModel evolandiaModel){
+        this.evolandiaModel = evolandiaModel;
         
         // mainframe
         this.window = new JFrame("EVOLANDIA");
@@ -130,9 +134,18 @@ public class EvolandiaView {
         this.exploreAreaButton.setBackground(Color.black);
         this.exploreAreaButton.setForeground(Color.pink);
 
+        this.evolveButton = new JButton("EVOLVE CREATURE");
+        this.evolveButton.setFont(startFont);
+        this.evolveButton.setBackground(Color.black);
+        this.evolveButton.setForeground(Color.pink);
+
         this.inventoryPanel = new JPanel();
         this.inventoryPanel.setBounds(100, 100, 600, 400);
         this.inventoryPanel.setBackground(Color.black);
+    }
+
+    public void setEvolandiaModel(EvolandiaModel evolandiaModel) {
+        this.evolandiaModel = evolandiaModel;
     }
 
     public void selectStarterScreen(){
@@ -368,4 +381,45 @@ public class EvolandiaView {
         this.exploreAreaButton.addActionListener(actionListener);
     }
 
+    public void setEvolveButton(ActionListener actionListener) {
+        if (this.evolveButton != null) { // Ensure evolveButton is not null
+            this.evolveButton.addActionListener(actionListener);
+        } else {
+            System.err.println("Error: evolveButton is null.");
+        }
+    }
+
+    public Creatures getSelectedCreature1() {
+        int selectedIndex = creatureSelectionComboBox.getSelectedIndex(); // Replace with your actual JComboBox for selecting creatures
+        if (selectedIndex != -1) {
+            // Retrieve the selected creature based on the index from the model
+            return evolandiaModel.getEvo1Index(selectedIndex);
+        } else {
+            // Handle the case when no creature is selected
+            return null;
+        }
+    }
+
+    public Creatures getSelectedCreature2() {
+        int selectedIndex = creatureSelectionComboBox.getSelectedIndex(); // Assuming you have a second JComboBox for selecting creatures
+        if (selectedIndex != -1) {
+            // Retrieve the selected creature based on the index from the model
+            return evolandiaModel.getEvo2Index(selectedIndex);
+        } else {
+            // Handle the case when no creature is selected
+            return null;
+        }
+    }
+    
+    
+    
+    public void displayEvolutionSuccess() {
+        JOptionPane.showMessageDialog(null, "Evolution successful!");
+        // You can add more UI updates or actions here upon successful evolution
+    }
+    
+    public void displayEvolutionFailure() {
+        JOptionPane.showMessageDialog(null, "Evolution failed.");
+        // You can add more UI updates or actions here upon failed evolution
+    }
 }

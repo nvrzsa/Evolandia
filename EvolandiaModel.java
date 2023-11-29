@@ -98,4 +98,69 @@ public class EvolandiaModel {
             }
             return result;
         }
+
+        public boolean evolveCreatures(Creatures creature1, Creatures creature2) {
+            if (canEvolve(creature1, creature2)) {
+                if (evolutionSuccess(creature1, creature2)) {
+                    Creatures evolvedCreature = createEvolvedCreature(creature1, creature2);
+                    if (evolvedCreature != null) {
+                        // Remove the selected creatures from the inventory
+                        inventory.removeCreature(creature1);
+                        inventory.removeCreature(creature2);
+                        // Add the evolved creature to the inventory
+                        inventory.addCreature(evolvedCreature);
+                        return true; // Evolution successful
+                    }
+                }
+            }
+            return false; // Evolution failed
+        }
+
+        private boolean canEvolve(Creatures creature1, Creatures creature2) {
+            // Check if the creatures belong to the same family and EL, and not EL3
+            return creature1.getFamily().equals(creature2.getFamily()) &&
+                   creature1.getEvol() == creature2.getEvol() &&
+                   creature1.getEvol() != 3;
+        }
+
+        private boolean evolutionSuccess(Creatures creature1, Creatures creature2) {
+            // Example logic for determining evolution success based on types and levels
+            boolean success = false;
+        
+            // Check if creatures are of the same type and at a compatible evolution level
+            if (creature1.getType().equals(creature2.getType()) && creature1.getEvol() == creature2.getEvol()) {
+                // Logic for successful evolution (Example: Fire creatures evolve at level 1, Grass at level 2, Water at level 3)
+                if (creature1.getType().equals("fire") && creature1.getEvol() == 1) {
+                    success = true;
+                } else if (creature1.getType().equals("grass") && creature1.getEvol() == 2) {
+                    success = true;
+                } else if (creature1.getType().equals("water") && creature1.getEvol() == 3) {
+                    success = true;
+                }
+                // Add more conditions as needed based on your game's evolution rules
+            }
+        
+            return success;
+        }
+        
+
+        private Creatures createEvolvedCreature(Creatures creature1, Creatures creature2) {
+            // Assuming the evolution is successful based on your logic
+            // Create a new creature with the same family, next EL, and appropriate type
+
+            // Get the family of the evolved creature
+            String family = creature1.getFamily();
+
+            // Determine the next evolution level (EL) for the evolved creature
+            int nextEL = creature1.getEvol() + 1;
+
+            // Determine the type of the evolved creature (assuming it remains the same as the parents)
+            String type = creature1.getType();
+
+            // Create a new creature with the evolved characteristics
+            Creatures evolvedCreature = new Creatures(nextEL, "Evolved " + family, type, family);
+
+            return evolvedCreature;
+        }
+
 }
