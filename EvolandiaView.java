@@ -260,35 +260,36 @@ public class EvolandiaView {
 
     public void exploreArea() {
         this.menuPanel.setVisible(false);
-    this.menuChoicePanel.setVisible(false);
+        this.menuChoicePanel.setVisible(false);
 
-    row = 1;
-    col = 5;
-    int i = 0;
-    int j = 0;
+        row = 1;
+        col = 5;
+        int i = 0;
+        int j = 0;
 
-    areaPanel = new JPanel(new GridLayout(col, row));
-    areaPanel.setBounds(10, 10, 600, 400);  // Set the bounds as per your requirement
-    areaPanel.setBackground(Color.black);
-    areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
+        areaPanel = new JPanel(new GridLayout(col, row));
+        areaPanel.setBounds(100, 10, 600, 400);  // Set the bounds as per your requirement
+        areaPanel.setBackground(Color.black);
+        areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
 
-    areaLabel = new JLabel[10][10];
+        areaLabel = new JLabel[10][10];
 
-    for (i = 0; i < col; i++) {
-        for (j = 0; j < row; j++) {
-            areaLabel[i][j] = new JLabel("");
-            areaLabel[i][j].setFont(startFont);
-            areaLabel[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-            areaLabel[i][j].setVerticalAlignment(SwingConstants.CENTER);
-            areaLabel[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            areaLabel[i][j].setBackground(Color.pink);
-            areaLabel[i][j].setOpaque(true);
+        for (i = 0; i < col; i++) {
+            for (j = 0; j < row; j++) {
+                areaLabel[i][j] = new JLabel("");
+                areaLabel[i][j].setFont(startFont);
+                areaLabel[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+                areaLabel[i][j].setVerticalAlignment(SwingConstants.CENTER);
+                areaLabel[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                areaLabel[i][j].setBackground(Color.pink);
+                areaLabel[i][j].setOpaque(true);
 
-            areaPanel.add(areaLabel[i][j]);
+                areaPanel.add(areaLabel[i][j]);
         }
     }
 
     areaButtonPanel = new JPanel(new GridLayout(3, 1));
+    areaButtonPanel.setBounds(300, 450, 200, 100);
     up = new JButton("UP");
     down = new JButton("DOWN");
     left = new JButton("LEFT");
@@ -307,8 +308,8 @@ public class EvolandiaView {
     areaButtonPanel.add(areaGridLabel);
     areaButtonPanel.add(areaChoice);
 
-    this.con.add(areaPanel);  
-    this.con.add(areaButtonPanel);
+    this.con.add(areaPanel, BorderLayout.CENTER);  
+    this.con.add(areaButtonPanel, BorderLayout.EAST);
     this.window.revalidate();
     this.window.repaint();
 
