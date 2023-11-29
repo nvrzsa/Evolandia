@@ -65,4 +65,5 @@ public class Area{
             position[0] = row;
         }
     }
+
 }

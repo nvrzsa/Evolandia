@@ -196,16 +196,46 @@ public class EvolandiaController {
                 boolean evolutionSuccess = evolandiaModel.evolveCreatures(selectedCreature1, selectedCreature2);
                 
                 if (evolutionSuccess) {
-                    // Evolution successful, update view with success message or actions
+                    // Evolution successful
                     evolandiaView.displayEvolutionSuccess();
                 } else {
-                    // Evolution failed, update view with failure message or actions
+                    // Evolution failed
                     evolandiaView.displayEvolutionFailure();
                 }
             }
         });
-        
+
+        evolandiaView.upButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                System.out.println("up");
+                evolandiaView.movePlayer(-1, 0);
+                
+            }
+        });
+
+        evolandiaView.downButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                evolandiaView.movePlayer(1, 0);
+            }
+        });
+
+        evolandiaView.leftButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                evolandiaView.movePlayer(0, -1);
+            }
+        });
+
+        evolandiaView.rightButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                evolandiaView.movePlayer(0, 1);
+            }
+        });
 
     }
+
     
 }
