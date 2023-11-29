@@ -6,7 +6,6 @@ import java.util.List;
 public class EvolandiaView {
 
     private int row, col;
-    
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, 
@@ -142,6 +141,13 @@ public class EvolandiaView {
         this.inventoryPanel = new JPanel();
         this.inventoryPanel.setBounds(100, 100, 600, 400);
         this.inventoryPanel.setBackground(Color.black);
+
+        this.creatureSelectionComboBox = new JComboBox<>();
+
+        List<Creatures> inventoryCreatures = evolandiaModel.getInventoryCreatures();
+        for (Creatures creature : inventoryCreatures) {
+            creatureSelectionComboBox.addItem(creature.getName());
+        }
     }
 
     public void setEvolandiaModel(EvolandiaModel evolandiaModel) {
@@ -281,7 +287,7 @@ public class EvolandiaView {
         int j = 0;
 
         areaPanel = new JPanel(new GridLayout(col, row));
-        areaPanel.setBounds(100, 10, 600, 400);  // Set the bounds as per your requirement
+        areaPanel.setBounds(100, 10, 600, 400);
         areaPanel.setBackground(Color.black);
         areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
 
@@ -390,7 +396,7 @@ public class EvolandiaView {
     }
 
     public Creatures getSelectedCreature1() {
-        int selectedIndex = creatureSelectionComboBox.getSelectedIndex(); // Replace with your actual JComboBox for selecting creatures
+        int selectedIndex = creatureSelectionComboBox.getSelectedIndex();
         if (selectedIndex != -1) {
             // Retrieve the selected creature based on the index from the model
             return evolandiaModel.getEvo1Index(selectedIndex);
@@ -401,7 +407,7 @@ public class EvolandiaView {
     }
 
     public Creatures getSelectedCreature2() {
-        int selectedIndex = creatureSelectionComboBox.getSelectedIndex(); // Assuming you have a second JComboBox for selecting creatures
+        int selectedIndex = creatureSelectionComboBox.getSelectedIndex();
         if (selectedIndex != -1) {
             // Retrieve the selected creature based on the index from the model
             return evolandiaModel.getEvo2Index(selectedIndex);
@@ -411,15 +417,11 @@ public class EvolandiaView {
         }
     }
     
-    
-    
     public void displayEvolutionSuccess() {
         JOptionPane.showMessageDialog(null, "Evolution successful!");
-        // You can add more UI updates or actions here upon successful evolution
     }
     
     public void displayEvolutionFailure() {
         JOptionPane.showMessageDialog(null, "Evolution failed.");
-        // You can add more UI updates or actions here upon failed evolution
     }
 }

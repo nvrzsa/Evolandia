@@ -4,6 +4,5 @@ public class guiDriver {
         EvolandiaView evolandiaView = new EvolandiaView(evolandiaModel);
         EvolandiaController evolandiaController = new EvolandiaController(evolandiaView, evolandiaModel);
 
-    }
-    
+    } 
 }

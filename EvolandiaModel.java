@@ -124,7 +124,6 @@ public class EvolandiaModel {
         }
 
         private boolean evolutionSuccess(Creatures creature1, Creatures creature2) {
-            // Example logic for determining evolution success based on types and levels
             boolean success = false;
         
             // Check if creatures are of the same type and at a compatible evolution level
@@ -137,15 +136,12 @@ public class EvolandiaModel {
                 } else if (creature1.getType().equals("water") && creature1.getEvol() == 3) {
                     success = true;
                 }
-                // Add more conditions as needed based on your game's evolution rules
             }
-        
             return success;
         }
         
 
         private Creatures createEvolvedCreature(Creatures creature1, Creatures creature2) {
-            // Assuming the evolution is successful based on your logic
             // Create a new creature with the same family, next EL, and appropriate type
 
             // Get the family of the evolved creature

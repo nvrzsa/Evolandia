@@ -41,7 +41,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -59,7 +58,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -77,7 +75,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -95,7 +92,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -113,7 +109,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -131,7 +126,6 @@ public class EvolandiaController {
                 else {
                     System.out.println("failed");
                 }
-
             } 
         });
 
@@ -204,8 +198,5 @@ public class EvolandiaController {
                 }
             }
         });
-        
-
     }
-    
 }
