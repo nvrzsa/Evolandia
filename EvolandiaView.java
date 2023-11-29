@@ -259,50 +259,59 @@ public class EvolandiaView {
     }
 
     public void exploreArea() {
-        row = 1;
-        col = 5;
-        int i = 0;
-        int j = 0;
+        this.menuPanel.setVisible(false);
+    this.menuChoicePanel.setVisible(false);
 
-        areaPanel = new JPanel(new GridLayout(col, row));
-        areaPanel.setBackground(Color.black);
-        areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
+    row = 1;
+    col = 5;
+    int i = 0;
+    int j = 0;
 
-        areaLabel = new JLabel[10][10];
+    areaPanel = new JPanel(new GridLayout(col, row));
+    areaPanel.setBounds(10, 10, 600, 400);  // Set the bounds as per your requirement
+    areaPanel.setBackground(Color.black);
+    areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
 
-        for(i = 0; i < col; i++){
-            for(j = 0; j < row; j++){
-                areaLabel[i][j] = new JLabel("");
-                areaLabel[i][j].setFont(startFont);
-                areaLabel[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-                areaLabel[i][j].setVerticalAlignment(SwingConstants.CENTER);
-                areaLabel[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                areaLabel[i][j].setBackground(Color.pink);
-                areaLabel[i][j].setOpaque(true);
+    areaLabel = new JLabel[10][10];
 
-                areaPanel.add(areaLabel[i][j]);
-            }
+    for (i = 0; i < col; i++) {
+        for (j = 0; j < row; j++) {
+            areaLabel[i][j] = new JLabel("");
+            areaLabel[i][j].setFont(startFont);
+            areaLabel[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+            areaLabel[i][j].setVerticalAlignment(SwingConstants.CENTER);
+            areaLabel[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            areaLabel[i][j].setBackground(Color.pink);
+            areaLabel[i][j].setOpaque(true);
+
+            areaPanel.add(areaLabel[i][j]);
         }
+    }
 
-        areaButtonPanel = new JPanel(new GridLayout(3, 1));
-        up = new JButton("UP");
-        down = new JButton("down");
-        left = new JButton("left");
-        right = new JButton("right");
+    areaButtonPanel = new JPanel(new GridLayout(3, 1));
+    up = new JButton("UP");
+    down = new JButton("DOWN");
+    left = new JButton("LEFT");
+    right = new JButton("RIGHT");
 
-        areaChoice = new JComboBox<String>(new String[] {
+    areaChoice = new JComboBox<String>(new String[]{
             "Area 1", "Area 2", "Area3"
-        });
+    });
 
-        areaGridLabel = new JLabel("Area: ");
+    areaGridLabel = new JLabel("Area: ");
 
-        areaButtonPanel.add(up);
-        areaButtonPanel.add(down);
-        areaButtonPanel.add(left);
-        areaButtonPanel.add(right);
-        areaButtonPanel.add(areaGridLabel);
-        areaButtonPanel.add(areaChoice);
-        
+    areaButtonPanel.add(up);
+    areaButtonPanel.add(down);
+    areaButtonPanel.add(left);
+    areaButtonPanel.add(right);
+    areaButtonPanel.add(areaGridLabel);
+    areaButtonPanel.add(areaChoice);
+
+    this.con.add(areaPanel);  
+    this.con.add(areaButtonPanel);
+    this.window.revalidate();
+    this.window.repaint();
+
     }
     
 

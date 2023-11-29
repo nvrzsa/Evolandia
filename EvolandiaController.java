@@ -185,6 +185,7 @@ public class EvolandiaController {
                 evolandiaView.exploreArea();
             }
         });
+        
 
     }
     
