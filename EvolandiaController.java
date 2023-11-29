@@ -6,6 +6,11 @@ public class EvolandiaController {
     private EvolandiaView evolandiaView;
     private EvolandiaModel evolandiaModel;
 
+    private int playerRow; 
+    private int playerCol; 
+    private int maxRows;
+    private int maxCols;
+
     public EvolandiaController(EvolandiaView evolandiaView, EvolandiaModel evolandiaModel){
         this.evolandiaView = evolandiaView;
         this.evolandiaModel = evolandiaModel;
@@ -198,8 +203,45 @@ public class EvolandiaController {
                 }
             }
         });
-        
 
-    }
-    
+        evolandiaView.upButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (playerRow > 0) { 
+                    playerRow--;
+                    evolandiaView.updatePlayerPosition();
+                }
+            }
+        });
+        
+        evolandiaView.downButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (playerRow < maxRows - 1) {
+                    playerRow++;
+                    evolandiaView.updatePlayerPosition();
+                }
+            }
+        });
+
+        evolandiaView.leftButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (playerCol > 0) { 
+                    playerCol--; 
+                    evolandiaView.updatePlayerPosition();
+                }
+            }
+        });
+
+        evolandiaView.rightButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (playerCol < maxCols - 1) {
+                    playerCol++;
+                    evolandiaView.updatePlayerPosition();
+                }
+            }
+        });
+    } 
 }

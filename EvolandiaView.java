@@ -6,6 +6,8 @@ import java.util.List;
 public class EvolandiaView {
 
     private int row, col;
+    private int playerRow = 0;
+    private int playerCol = 0;
     
     private JFrame window;
     private Container con;
@@ -417,6 +419,12 @@ public class EvolandiaView {
         this.right.addActionListener(actionListener);
     }
 
+    public void updatePlayerPosition() {
+        areaLabel[playerRow][playerCol].setText("");
+        // Update the player's position marker in the area grid
+        areaLabel[playerRow][playerCol].setText("P");
+    }
+
     public Creatures getSelectedCreature1() {
         int selectedIndex = creatureSelectionComboBox.getSelectedIndex();
         if (selectedIndex != -1) {
@@ -441,6 +449,5 @@ public class EvolandiaView {
     
     public void displayEvolutionFailure() {
         JOptionPane.showMessageDialog(null, "Evolution failed.");
-        // You can add more UI updates or actions here upon failed evolution
     }
 }
