@@ -4,21 +4,23 @@ import javax.swing.*;
 import java.util.List;
 
 public class EvolandiaView {
+
+    private int row, col;
     
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, 
-                   menuPanel, menuChoicePanel, inventoryPanel;
-    private JLabel titleNameLabel, menuLabel;
+                   menuPanel, menuChoicePanel, inventoryPanel, areaPanel, areaButtonPanel;
+    private JLabel titleNameLabel, menuLabel, areaGridLabel;
     private Font titleFont = new Font("Times New Roman", Font.PLAIN, 100);
     private Font startFont = new Font ("Times New Roman", Font.PLAIN, 30);
     private JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6, 
                     choice7, choice8, choice9, mainMenuButton, viewInventoryButton, exploreAreaButton, 
-                    evolveButton, exitButton;
+                    evolveButton, exitButton, up, down, left, right;
     private JTextArea mainTextArea, inventoryTextArea;
-    private JButton[][] gridButtons;
-    private int row, col;
-
+    private JLabel[][] areaLabel;
+    private JComboBox<String> areaChoice;
+    
     private ImageIcon strawanderJPG = new ImageIcon("sprites\\Strawander.jpg");
     private ImageIcon chocowoolJPG = new ImageIcon("sprites\\Chocowool.jpg");
     private ImageIcon parfwitJPG = new ImageIcon("sprites\\Parfwit.jpg");
@@ -257,132 +259,59 @@ public class EvolandiaView {
     }
 
     public void exploreArea() {
-        this.menuPanel.setVisible(false);
-        this.menuChoicePanel.setVisible(false);
-    
-        this.menuPanel = new JPanel();
-        this.menuPanel.setBounds(100, 100, 600, 150);
-        this.menuPanel.setBackground(Color.black);
-    
-        this.menuLabel = new JLabel("EXPLORE");
-        this.menuLabel.setForeground(Color.pink);
-        this.menuLabel.setFont(titleFont);
-        this.menuPanel.add(menuLabel);
-    
-        this.menuChoicePanel = new JPanel();
-        this.menuChoicePanel.setBounds(190, 350, 400, 150);
-        this.menuChoicePanel.setBackground(Color.pink);
-        this.menuChoicePanel.setLayout(new GridLayout(4, 1));
-    
-        JButton exploreAreasButton = new JButton("EXPLORE AREAS");
-        exploreAreasButton.setFont(startFont);
-        exploreAreasButton.setBackground(Color.black);
-        exploreAreasButton.setForeground(Color.pink);
-        exploreAreasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showAreaSelectionButtons();
+        row = 1;
+        col = 5;
+        int i = 0;
+        int j = 0;
+
+        areaPanel = new JPanel(new GridLayout(col, row));
+        areaPanel.setBackground(Color.black);
+        areaPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 7));
+
+        areaLabel = new JLabel[10][10];
+
+        for(i = 0; i < col; i++){
+            for(j = 0; j < row; j++){
+                areaLabel[i][j] = new JLabel("");
+                areaLabel[i][j].setFont(startFont);
+                areaLabel[i][j].setHorizontalAlignment(SwingConstants.CENTER);
+                areaLabel[i][j].setVerticalAlignment(SwingConstants.CENTER);
+                areaLabel[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                areaLabel[i][j].setBackground(Color.pink);
+                areaLabel[i][j].setOpaque(true);
+
+                areaPanel.add(areaLabel[i][j]);
             }
+        }
+
+        areaButtonPanel = new JPanel(new GridLayout(3, 1));
+        up = new JButton("UP");
+        down = new JButton("down");
+        left = new JButton("left");
+        right = new JButton("right");
+
+        areaChoice = new JComboBox<String>(new String[] {
+            "Area 1", "Area 2", "Area3"
         });
 
-        this.mainMenuButton = new JButton("MAIN MENU");
-        this.mainMenuButton.setFont(startFont);
-        this.mainMenuButton.setBackground(Color.black);
-        this.mainMenuButton.setForeground(Color.pink);
+        areaGridLabel = new JLabel("Area: ");
 
-        this.mainMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showMainMenu();
-            }
-        });
-
-        this.menuChoicePanel.add(exploreAreasButton);
-        this.menuChoicePanel.add(mainMenuButton);
-    
-        this.con.add(menuChoicePanel);
-        this.con.add(menuPanel);
-    }
-
-    private void showAreaSelectionButtons() {
-        this.menuChoicePanel.removeAll(); // Clear existing components
-        this.menuChoicePanel.setLayout(new GridLayout(4, 1));
-    
-        JButton area1Button = new JButton("AREA 1");
-        area1Button.setFont(startFont);
-        area1Button.setBackground(Color.black);
-        area1Button.setForeground(Color.pink);
-        area1Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainTextArea.setText("Welcome to Area 1!");
-                // Other actions specific to Area 1 can be added here
-            }
-        });
-    
-        JButton area2Button = new JButton("AREA 2");
-        area2Button.setFont(startFont);
-        area2Button.setBackground(Color.black);
-        area2Button.setForeground(Color.pink);
-        area2Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainTextArea.setText("Welcome to Area 2!");
-                // Other actions specific to Area 2 can be added here
-            }
-        });
-    
-        JButton area3Button = new JButton("AREA 3");
-        area3Button.setFont(startFont);
-        area3Button.setBackground(Color.black);
-        area3Button.setForeground(Color.pink);
-        area3Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainTextArea.setText("Welcome to Area 3!");
-                // Other actions specific to Area 3 can be added here
-            }
-        });
-
-        this.mainMenuButton = new JButton("MAIN MENU");
-        this.mainMenuButton.setFont(startFont);
-        this.mainMenuButton.setBackground(Color.black);
-        this.mainMenuButton.setForeground(Color.pink);
-
-        this.mainMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showMainMenu();
-            }
-        });
-    
-        this.menuChoicePanel.add(area1Button);
-        this.menuChoicePanel.add(area2Button);
-        this.menuChoicePanel.add(area3Button);
-        this.menuChoicePanel.add(mainMenuButton);
-    
-        this.con.revalidate(); // Revalidate the container to reflect changes
-        this.con.repaint();
+        areaButtonPanel.add(up);
+        areaButtonPanel.add(down);
+        areaButtonPanel.add(left);
+        areaButtonPanel.add(right);
+        areaButtonPanel.add(areaGridLabel);
+        areaButtonPanel.add(areaChoice);
+        
     }
     
+
     private void showMainMenu(){
         this.inventoryPanel.setVisible(false);
         this.menuPanel.setVisible(false);
         this.menuChoicePanel.setVisible(false);
 
         menuScreen();
-    }
-
-    public void area1(){
-        mapMake(5, 1);
-    }
-
-    public void area2(){
-        mapMake(3, 3);
-    }
-
-    public void area3(){
-        mapMake(4, 4);
     }
 
     public void setChoice1(ActionListener actionListener){
@@ -429,96 +358,4 @@ public class EvolandiaView {
         this.exploreAreaButton.addActionListener(actionListener);
     }
 
-    public void mapMake(int x, int y){
-        this.inventoryPanel.setVisible(false);
-        this.menuPanel.setVisible(false);
-        this.menuChoicePanel.setVisible(false);
-
-        // Clear existing components from the content pane
-        this.con.removeAll();
-
-        gridButtons = new JButton[x][y];
-        row = 0;
-        col = 0;
-
-        JPanel gridPanel = new JPanel(new GridLayout(x, y));
-
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                gridButtons[i][j] = new JButton();
-                gridButtons[i][j].setEnabled(false);
-                gridPanel.add(gridButtons[i][j]);
-            }
-        }
-
-        // Set the player's initial position
-        gridButtons[row][col].setText("P");
-
-        // Create a panel for arrow buttons
-        JPanel arrowPanel = new JPanel(new GridLayout(3, 3));
-
-        JButton upButton = new JButton("^");
-        JButton downButton = new JButton("v");
-        JButton leftButton = new JButton("<");
-        JButton rightButton = new JButton(">");
-
-        upButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                movePlayer(-1, 0);
-            }
-        });
-
-        downButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                movePlayer(1, 0);
-            }
-        });
-        leftButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                movePlayer(0, -1);
-            }
-        });
-        rightButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                movePlayer(0, 1);
-            }
-        });
-
-        arrowPanel.add(new JLabel()); // Empty cell
-        arrowPanel.add(upButton);
-        arrowPanel.add(new JLabel()); // Empty cell
-        arrowPanel.add(leftButton);
-        arrowPanel.add(new JLabel()); // Empty cell
-        arrowPanel.add(rightButton);
-        arrowPanel.add(new JLabel()); // Empty cell
-        arrowPanel.add(downButton);
-        arrowPanel.add(new JLabel()); // Empty cell
-
-        // Add grid and arrow panels to a container panel
-        JPanel containerPanel = new JPanel();
-        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
-        containerPanel.add(gridPanel);
-        containerPanel.add(arrowPanel);
-
-        this.con.add(containerPanel);
-        this.con.revalidate(); // Revalidate the container to reflect changes
-        this.con.repaint();
-    }
-
-    private void movePlayer(int rowDelta, int colDelta) {
-        // Move the player within the grid
-        gridButtons[row][col].setText(""); // Clear the current position
-
-        int x = gridButtons.length;
-        int y = gridButtons[0].length;
-
-        row = Math.max(0, Math.min(row + rowDelta, x - 1));
-        col = Math.max(0, Math.min(col + colDelta, y - 1));
-
-        gridButtons[row][col].setText("P"); // Set the new position
-    }
 }
