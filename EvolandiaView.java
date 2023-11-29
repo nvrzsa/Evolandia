@@ -6,6 +6,7 @@ import java.util.List;
 public class EvolandiaView {
 
     private int row, col;
+    
     private JFrame window;
     private Container con;
     private JPanel titlePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, 
@@ -247,8 +248,12 @@ public class EvolandiaView {
         this.inventoryTextArea = new JTextArea("Inventory:\n");
 
         for (Creatures creature : creatures) {
+            ImageIcon  icon = new ImageIcon("sprites\\"+creature.getName()+"JPG");
+
             inventoryTextArea.append("Name: " + creature.getName() + " Type: " + creature.getType() + 
             " \nFamily: " + creature.getFamily() + " EL: " + creature.getEvol() + "\n");
+            
+            System.out.println(creature.getName()+"JPG");
             
         }
 
@@ -281,8 +286,8 @@ public class EvolandiaView {
         this.menuPanel.setVisible(false);
         this.menuChoicePanel.setVisible(false);
 
-        row = 1;
-        col = 5;
+        row = 4;
+        col = 4;
         int i = 0;
         int j = 0;
 
@@ -304,33 +309,34 @@ public class EvolandiaView {
                 areaLabel[i][j].setOpaque(true);
 
                 areaPanel.add(areaLabel[i][j]);
+            }
         }
-    }
+        areaLabel[playerRow][playerCol].setText("P");
 
-    areaButtonPanel = new JPanel(new GridLayout(3, 1));
-    areaButtonPanel.setBounds(300, 450, 200, 100);
-    up = new JButton("UP");
-    down = new JButton("DOWN");
-    left = new JButton("LEFT");
-    right = new JButton("RIGHT");
+        areaButtonPanel = new JPanel(new GridLayout(3, 1));
+        areaButtonPanel.setBounds(300, 450, 200, 100);
+        up = new JButton("UP");
+        down = new JButton("DOWN");
+        left = new JButton("LEFT");
+        right = new JButton("RIGHT");
 
-    areaChoice = new JComboBox<String>(new String[]{
-            "Area 1", "Area 2", "Area3"
-    });
+        areaChoice = new JComboBox<String>(new String[]{
+                "Area 1", "Area 2", "Area3"
+        });
 
-    areaGridLabel = new JLabel("Area: ");
+        areaGridLabel = new JLabel("Area: ");
 
-    areaButtonPanel.add(up);
-    areaButtonPanel.add(down);
-    areaButtonPanel.add(left);
-    areaButtonPanel.add(right);
-    areaButtonPanel.add(areaGridLabel);
-    areaButtonPanel.add(areaChoice);
+        areaButtonPanel.add(up);
+        areaButtonPanel.add(down);
+        areaButtonPanel.add(left);
+        areaButtonPanel.add(right);
+        areaButtonPanel.add(areaGridLabel);
+        areaButtonPanel.add(areaChoice);
 
-    this.con.add(areaPanel, BorderLayout.CENTER);  
-    this.con.add(areaButtonPanel, BorderLayout.EAST);
-    this.window.revalidate();
-    this.window.repaint();
+        this.con.add(areaPanel, BorderLayout.CENTER);  
+        this.con.add(areaButtonPanel, BorderLayout.EAST);
+        this.window.revalidate();
+        this.window.repaint();
 
     }
     
@@ -388,31 +394,43 @@ public class EvolandiaView {
     }
 
     public void setEvolveButton(ActionListener actionListener) {
-        if (this.evolveButton != null) { // Ensure evolveButton is not null
+        if (this.evolveButton != null) {
             this.evolveButton.addActionListener(actionListener);
         } else {
             System.err.println("Error: evolveButton is null.");
         }
     }
 
+    public void upButton(ActionListener actionListener){
+        this.up.addActionListener(actionListener);
+    }
+
+    public void downButton(ActionListener actionListener){
+        this.down.addActionListener(actionListener);
+    }
+
+    public void leftButton(ActionListener actionListener){
+        this.left.addActionListener(actionListener);
+    }
+
+    public void rightButton(ActionListener actionListener){
+        this.right.addActionListener(actionListener);
+    }
+
     public Creatures getSelectedCreature1() {
         int selectedIndex = creatureSelectionComboBox.getSelectedIndex();
         if (selectedIndex != -1) {
-            // Retrieve the selected creature based on the index from the model
             return evolandiaModel.getEvo1Index(selectedIndex);
         } else {
-            // Handle the case when no creature is selected
             return null;
         }
     }
 
     public Creatures getSelectedCreature2() {
-        int selectedIndex = creatureSelectionComboBox.getSelectedIndex();
+        int selectedIndex = creatureSelectionComboBox.getSelectedIndex(); // Assuming you have a second JComboBox for selecting creatures
         if (selectedIndex != -1) {
-            // Retrieve the selected creature based on the index from the model
             return evolandiaModel.getEvo2Index(selectedIndex);
         } else {
-            // Handle the case when no creature is selected
             return null;
         }
     }
@@ -423,5 +441,6 @@ public class EvolandiaView {
     
     public void displayEvolutionFailure() {
         JOptionPane.showMessageDialog(null, "Evolution failed.");
+        // You can add more UI updates or actions here upon failed evolution
     }
 }

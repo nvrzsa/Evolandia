@@ -190,13 +190,16 @@ public class EvolandiaController {
                 boolean evolutionSuccess = evolandiaModel.evolveCreatures(selectedCreature1, selectedCreature2);
                 
                 if (evolutionSuccess) {
-                    // Evolution successful, update view with success message or actions
+                    // Evolution successful
                     evolandiaView.displayEvolutionSuccess();
                 } else {
-                    // Evolution failed, update view with failure message or actions
+                    // Evolution failed
                     evolandiaView.displayEvolutionFailure();
                 }
             }
         });
+        
+
     }
+    
 }
